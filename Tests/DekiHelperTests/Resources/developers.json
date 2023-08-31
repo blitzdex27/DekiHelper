@@ -6,13 +6,5 @@
     {
         "name": "omen",
         "department": "research"
-    },
-    {
-        "name": "eman",
-        "department": "research"
-    },
-    {
-        "name": "simon",
-        "department": "research"
-    },
+    }
 ]

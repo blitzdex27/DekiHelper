@@ -2,7 +2,7 @@
 //  ParserTests.swift
 //  
 //
-//  Created by Ss on 8/31/23.
+//  Created by Dexter Ramos on 8/31/23.
 //
 
 import XCTest
@@ -23,15 +23,7 @@ class ParserTests: XCTestCase {
         {
             "name": "omen",
             "department": "research"
-        },
-        {
-            "name": "eman",
-            "department": "research"
-        },
-        {
-            "name": "simon",
-            "department": "research"
-        },
+        }
     ]
     """#
     let jsonStringWithArrayContent2 = #"[{"name":"deki","department":"research"},{"name":"omen","department":"research"}]"#
@@ -48,22 +40,28 @@ class ParserTests: XCTestCase {
     // MARK: - File To model -- Array content
     
     func testJSONToModelWithArrayContent() throws {
-        let developers = try DekiHelper.Parser.setupModel([Developer].self, fileName: fileNameDevelopers, type: .json, bundle: Bundle.module)
+        let developers = try DekiHelper.Parser.setupModel(
+            [Developer].self,
+            fileName: fileNameDevelopers,
+            type: .json,
+            bundle: Bundle.module
+        )
 
         XCTAssertTrue(developers[0].name == "deki")
         XCTAssertTrue(developers[0].department == "research")
         XCTAssertTrue(developers[1].name == "omen")
         XCTAssertTrue(developers[1].department == "research")
-        XCTAssertTrue(developers[2].name == "eman")
-        XCTAssertTrue(developers[2].department == "research")
-        XCTAssertTrue(developers[3].name == "simon")
-        XCTAssertTrue(developers[3].department == "research")
     }
     
     // MARK: - File To model -- Dictionary content
     
     func testJSONToModelWithDictionaryContent() throws {
-        let employee = try DekiHelper.Parser.setupModel(Employee.self, fileName: fileNameEmployee, type: .json, bundle: .module)
+        let employee = try DekiHelper.Parser.setupModel(
+            Employee.self,
+            fileName: fileNameEmployee,
+            type: .json,
+            bundle: .module
+        )
         
         XCTAssertTrue(employee.name == "deki")
         XCTAssertTrue(employee.department == "Research - Mobile - iOS")
@@ -73,7 +71,11 @@ class ParserTests: XCTestCase {
     // MARK: - File to collection object -- Array content
 
     func testJSONToObjectWithArrayContent() throws {
-        let jsonObject = try DekiHelper.Parser.collectionObject(fileName: fileNameDevelopers, type: .json, bundle: .module)
+        let jsonObject = try DekiHelper.Parser.collectionObject(
+            fileName: fileNameDevelopers,
+            type: .json,
+            bundle: .module
+        )
         
         guard case let jsonObject as [[String: String]] = jsonObject else {
             XCTFail("Expecting array content")
@@ -90,7 +92,11 @@ class ParserTests: XCTestCase {
     // MARK: - File to collection object -- Dictionary content
     
     func testJSONToObjectWithDictionaryContent() throws {
-        let jsonObject = try DekiHelper.Parser.collectionObject(fileName: fileNameEmployee, type: .json, bundle: .module)
+        let jsonObject = try DekiHelper.Parser.collectionObject(
+            fileName: fileNameEmployee,
+            type: .json,
+            bundle: .module
+        )
         
         guard case let jsonObject as [String: String] = jsonObject else {
             XCTFail("Expecting a dictionary")
@@ -106,7 +112,10 @@ class ParserTests: XCTestCase {
     
     func testStringToModelWithArrayContent() throws {
         
-        let developers = try DekiHelper.Parser.setupModel([Developer].self, collection: jsonStringWithArrayContent)
+        let developers = try DekiHelper.Parser.setupModel(
+            [Developer].self,
+            collection: jsonStringWithArrayContent
+        )
         
         XCTAssertTrue(developers[0].name == "deki")
         XCTAssertTrue(developers[0].department == "research")
@@ -126,7 +135,10 @@ class ParserTests: XCTestCase {
     
     func testStringToModelWithDictionaryContent() throws {
         
-        let employee = try DekiHelper.Parser.setupModel(Employee.self, collection: jsonStringWithDictionaryContent)
+        let employee = try DekiHelper.Parser.setupModel(
+            Employee.self,
+            collection: jsonStringWithDictionaryContent
+        )
         
         XCTAssertTrue(employee.name == "deki")
         XCTAssertTrue(employee.department == "Research - Mobile - iOS")

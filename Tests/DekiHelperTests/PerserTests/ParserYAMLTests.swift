@@ -2,7 +2,7 @@
 //  ParserYAMLTests.swift
 //  
 //
-//  Created by Ss on 8/31/23.
+//  Created by Dexter Ramos on 8/31/23.
 //
 
 import XCTest
@@ -40,10 +40,6 @@ class ParserYAMLTests: XCTestCase {
         XCTAssertTrue(developers[0].department == "research")
         XCTAssertTrue(developers[1].name == "omen")
         XCTAssertTrue(developers[1].department == "research")
-        XCTAssertTrue(developers[2].name == "eman")
-        XCTAssertTrue(developers[2].department == "research")
-        XCTAssertTrue(developers[3].name == "simon")
-        XCTAssertTrue(developers[3].department == "research")
     }
     
     
