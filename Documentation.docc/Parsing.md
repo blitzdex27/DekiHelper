@@ -10,7 +10,7 @@ struct Developer: Decodable {
     var department: String
 }
 
-let developers = try DekiParser.setupModel(
+let developers = try? DekiParser.setupModel(
     [Developer].self,
     collection: jsonString
 )
