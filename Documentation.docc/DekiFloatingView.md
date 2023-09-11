@@ -2,7 +2,7 @@
 
 A view that float and snaps.
 
-![dekifloatingview](./Documentation.docc/Resources/dekifloatingview-p.gif)
+![dekifloatingview](./Resources/dekifloatingview-p.gif)
 
 ## Overview
 
