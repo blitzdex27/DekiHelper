@@ -51,14 +51,13 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
         return view
     }()
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Hi"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 50)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: floatingView.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: floatingView.centerYAnchor).isActive = true
+        
         return label
     }()
     
@@ -66,8 +65,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(floatingView)
         floatingView.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerXAnchor.constraint(equalTo: floatingView.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: floatingView.centerYAnchor).isActive = true
     }
-    
 }
 
 ```
