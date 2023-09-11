@@ -40,7 +40,7 @@ class ParserTests: XCTestCase {
     // MARK: - File To model -- Array content
     
     func testJSONToModelWithArrayContent() throws {
-        let developers = try DekiHelper.Parser.setupModel(
+        let developers = try DekiParser.setupModel(
             [Developer].self,
             fileName: fileNameDevelopers,
             type: .json,
@@ -56,7 +56,7 @@ class ParserTests: XCTestCase {
     // MARK: - File To model -- Dictionary content
     
     func testJSONToModelWithDictionaryContent() throws {
-        let employee = try DekiHelper.Parser.setupModel(
+        let employee = try DekiParser.setupModel(
             Employee.self,
             fileName: fileNameEmployee,
             type: .json,
@@ -71,7 +71,7 @@ class ParserTests: XCTestCase {
     // MARK: - File to collection object -- Array content
 
     func testJSONToObjectWithArrayContent() throws {
-        let jsonObject = try DekiHelper.Parser.collectionObject(
+        let jsonObject = try DekiParser.collectionObject(
             fileName: fileNameDevelopers,
             type: .json,
             bundle: .module
@@ -92,7 +92,7 @@ class ParserTests: XCTestCase {
     // MARK: - File to collection object -- Dictionary content
     
     func testJSONToObjectWithDictionaryContent() throws {
-        let jsonObject = try DekiHelper.Parser.collectionObject(
+        let jsonObject = try DekiParser.collectionObject(
             fileName: fileNameEmployee,
             type: .json,
             bundle: .module
@@ -112,7 +112,7 @@ class ParserTests: XCTestCase {
     
     func testStringToModelWithArrayContent() throws {
         
-        let developers = try DekiHelper.Parser.setupModel(
+        let developers = try DekiParser.setupModel(
             [Developer].self,
             collection: jsonStringWithArrayContent
         )
@@ -122,7 +122,7 @@ class ParserTests: XCTestCase {
         XCTAssertTrue(developers[1].name == "omen")
         XCTAssertTrue(developers[1].department == "research")
         
-        let developers2 = try DekiHelper.Parser.setupModel([Developer].self, collection: jsonStringWithArrayContent2)
+        let developers2 = try DekiParser.setupModel([Developer].self, collection: jsonStringWithArrayContent2)
         
         XCTAssertTrue(developers2[0].name == "deki")
         XCTAssertTrue(developers2[0].department == "research")
@@ -135,7 +135,7 @@ class ParserTests: XCTestCase {
     
     func testStringToModelWithDictionaryContent() throws {
         
-        let employee = try DekiHelper.Parser.setupModel(
+        let employee = try DekiParser.setupModel(
             Employee.self,
             collection: jsonStringWithDictionaryContent
         )
@@ -143,7 +143,7 @@ class ParserTests: XCTestCase {
         XCTAssertTrue(employee.name == "deki")
         XCTAssertTrue(employee.department == "Research - Mobile - iOS")
         
-        let employee2 = try DekiHelper.Parser.setupModel(Employee.self, collection: jsonStringWithDictionaryContent2)
+        let employee2 = try DekiParser.setupModel(Employee.self, collection: jsonStringWithDictionaryContent2)
         
         XCTAssertTrue(employee2.name == "deki")
         XCTAssertTrue(employee2.department == "Research - Mobile - iOS")
@@ -154,7 +154,7 @@ class ParserTests: XCTestCase {
     
     func testStringToObjectWithArrayContent() throws {
         
-        let jsonObject = try DekiHelper.Parser.collectionObject(string: jsonStringWithArrayContent)
+        let jsonObject = try DekiParser.collectionObject(string: jsonStringWithArrayContent)
         
         guard case let jsonObject as [[String: String]] = jsonObject else {
             XCTFail("Expecting an array")
@@ -166,7 +166,7 @@ class ParserTests: XCTestCase {
         XCTAssertTrue(jsonObject[1]["name"] == "omen")
         XCTAssertTrue(jsonObject[1]["department"] == "research")
         
-        let jsonObject2 = try DekiHelper.Parser.collectionObject(string: jsonStringWithArrayContent2)
+        let jsonObject2 = try DekiParser.collectionObject(string: jsonStringWithArrayContent2)
         
         guard case let jsonObject2 as [[String: String]] = jsonObject2 else {
             XCTFail("Expecting an array")
@@ -184,7 +184,7 @@ class ParserTests: XCTestCase {
 
     func testStringToObjectWithDictionaryContent() throws {
         
-        let jsonObject = try DekiHelper.Parser.collectionObject(string: jsonStringWithDictionaryContent)
+        let jsonObject = try DekiParser.collectionObject(string: jsonStringWithDictionaryContent)
         
         guard case let jsonObject as [String: String] = jsonObject else {
             XCTFail("Expecting a dictionary")
@@ -194,7 +194,7 @@ class ParserTests: XCTestCase {
         XCTAssertTrue(jsonObject["name"] == "deki")
         XCTAssertTrue(jsonObject["department"] == "Research - Mobile - iOS")
         
-        let jsonObject2 = try DekiHelper.Parser.collectionObject(string: jsonStringWithDictionaryContent2)
+        let jsonObject2 = try DekiParser.collectionObject(string: jsonStringWithDictionaryContent2)
         
         guard case let jsonObject2 as [String: String] = jsonObject2 else {
             XCTFail("Expecting a dictionary")

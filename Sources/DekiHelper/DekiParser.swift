@@ -8,20 +8,20 @@
 import Foundation
 import Yams
 
-public extension DekiHelper.Parser {
+public class DekiParser {
     
-    enum ParseError: Error {
+    public enum ParseError: Error {
         case notExists(fileName: String)
         case general(message: String)
     }
     
-    enum FileType {
+    public enum FileType {
         case json
         case yaml
     }
     
     /// Parse json or yaml file into model
-    static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> T where T: Decodable {
+    public static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> T where T: Decodable {
         
         let data: Data
         
@@ -36,7 +36,7 @@ public extension DekiHelper.Parser {
     }
     
     /// Parse dictionary, array, json string, or yaml string into Model
-    static func setupModel<T>(_ model: T.Type, collection: Any) throws -> T where T: Decodable {
+    public static func setupModel<T>(_ model: T.Type, collection: Any) throws -> T where T: Decodable {
         
         let data: Data
         
@@ -76,7 +76,7 @@ public extension DekiHelper.Parser {
     }
     
     /// Parse json or yaml file into object (array or dictionary)
-    static func collectionObject(fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> Any {
+    public static func collectionObject(fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> Any {
         
         switch type {
         case .json:
@@ -87,7 +87,7 @@ public extension DekiHelper.Parser {
     }
     
     /// Parse json or yaml string into object (array or dictionary)
-    static func collectionObject(string: String) throws -> Any {
+    public static func collectionObject(string: String) throws -> Any {
         guard let data = string.data(using: .utf8) else {
             throw ParseError.general(message: "String cannot be encoded using UTF8")
         }
@@ -118,7 +118,7 @@ public extension DekiHelper.Parser {
 
 // MARK: - Utilities
 
-private extension DekiHelper.Parser {
+private extension DekiParser {
     static func collectionFrom(json: String, bundle: Bundle) throws -> Any {
         
         guard let url = bundle.url(forResource: json, withExtension: "json") else {

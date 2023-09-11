@@ -1,17 +1,36 @@
-#  Parsing samples
+# Parsing
 
-Model struct
+Use `DekiParser` methods to parse dictionary/array from string or files in json or yaml format.
 
 ```swift
+let jsonString = #"[{"name":"deki","department":"research"},{"name":"omen","department":"research"}]"#
+
 struct Developer: Decodable {
     var name: String
     var department: String
 }
+
+let developers = try DekiParser.setupModel(
+    [Developer].self,
+    collection: jsonString
+)
 ```
 
-### Parse JSON/YAML file into Model
+## Overview
+
+`DekiParser` have various methods that can be used for specific case of parsing.
+
+- `setupModel(_:fileName:type:bundle:)` - parse json or yaml file into model
+- `setupModel(_:collection:)` - parse dictionary, array, json string, or yaml string into Model
+- `collectionObject(fileName:type:bundle:)` - parse json or yaml file into object (array or dictionary)
+- `collectionObject(string:)` - parse json or yaml string into object (array or dictionary)
+
+## Topics
+
+### Parse json or yaml file into model
 
 JSON file - `developers.json`
+
 ```json
 [
     {
@@ -26,6 +45,7 @@ JSON file - `developers.json`
 ```
 
 Swift file
+
 ```swift
 // Model
 struct Developer: Decodable {
@@ -33,8 +53,8 @@ struct Developer: Decodable {
     var department: String
 }
 
-// Code
-let developers = try DekiHelper.Parser.setupModel(
+// Parse
+let developers = try DekiParser.setupModel(
     [Developer].self,
     fileName: fileNameDevelopers,
     type: .json,
@@ -48,16 +68,15 @@ print(developers[1].department) // research
 ```
 
 > **Note**
-> The json file here contains an array of dictionary, so we used `[Developer].self`, and therefore an array of `Developer` instances were created.
-> If the json file contains a dictionary, you should use `Developer.self` instead, and it will create a single `Developer` instance
-> This similar when you use the swift provided `JSONDecoder`
+> 
+> The json file here contains an array of dictionary, so we used [Developer].self, and therefore an array of Developer instances were created. If the json file contains a dictionary, you should use Developer.self instead, and it will create a single Developer instance This similar when you use the swift provided JSONDecoder
 
 ### Parse JSON/YAML string into Model
 
 ```swift
 let jsonStringWithArrayContent = #"[{"name":"deki","department":"research"},{"name":"omen","department":"research"}]"#
 
-let developers = try DekiHelper.Parser.setupModel(
+let developers = try DekiParser.setupModel(
     [Developer].self,
     collection: jsonStringWithArrayContent
 )
@@ -71,7 +90,7 @@ print(developers[1].department) // research
 ### Parse JSON/YAML file into swift object
 
 ```swift
-let jsonObject = try DekiHelper.Parser.collectionObject(
+let jsonObject = try DekiParser.collectionObject(
     fileName: fileNameEmployee,
     type: .json,
     bundle: .module
@@ -88,7 +107,7 @@ guard case let jsonObject as [String: String] = jsonObject else {
 ```swift
 let jsonStringWithDictionaryContent = #"{"name":"deki","department":"Research - Mobile - iOS"}"#
 
-let jsonObject = try DekiHelper.Parser.collectionObject(string: jsonStringWithDictionaryContent)
+let jsonObject = try DekiParser.collectionObject(string: jsonStringWithDictionaryContent)
 
 guard let jsonObject = jsonObject as? [String: String] else {
     return
@@ -98,39 +117,30 @@ print(jsonObject["name"]) // deki
 print(jsonObject["department"]) // Research - Mobile - iOS
 ```
 
-## Public Interface
+### Public Interface
 
 ```swift
-public struct DekiHelper {
 
-    public struct Parser {
-    }
-}
-
-public extension DekiHelper.Parser {
+public class DekiParser {
 
     public enum ParseError : Error {
-
         case notExists(fileName: String)
-
         case general(message: String)
     }
 
     public enum FileType {
-
         case json
-
         case yaml
     }
 
     /// Parse json or yaml file into model
-    public static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType, bundle: Bundle = Bundle.main) throws -> T where T : Decodable
+    public static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> T where T : Decodable
 
     /// Parse dictionary, array, json string, or yaml string into Model
     public static func setupModel<T>(_ model: T.Type, collection: Any) throws -> T where T : Decodable
 
     /// Parse json or yaml file into object (array or dictionary)
-    public static func collectionObject(fileName: String, type: FileType, bundle: Bundle = Bundle.main) throws -> Any
+    public static func collectionObject(fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> Any
 
     /// Parse json or yaml string into object (array or dictionary)
     public static func collectionObject(string: String) throws -> Any

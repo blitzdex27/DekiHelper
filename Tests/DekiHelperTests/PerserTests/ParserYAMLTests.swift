@@ -34,7 +34,7 @@ class ParserYAMLTests: XCTestCase {
     // MARK: - File To model -- Array content
     
     func testYAMLToModelWithArrayContent() throws {
-        let developers = try DekiHelper.Parser.setupModel([Developer].self, fileName: fileNameDevelopers, type: .yaml, bundle: .module)
+        let developers = try DekiParser.setupModel([Developer].self, fileName: fileNameDevelopers, type: .yaml, bundle: .module)
         
         XCTAssertTrue(developers[0].name == "deki")
         XCTAssertTrue(developers[0].department == "research")
@@ -46,7 +46,7 @@ class ParserYAMLTests: XCTestCase {
     // MARK: - File To model -- Dictionary content
 
     func testYAMLToModelWithDictionaryContent() throws {
-        let employee = try DekiHelper.Parser.setupModel(Employee.self, fileName: fileNameEmployee, type: .yaml, bundle: .module)
+        let employee = try DekiParser.setupModel(Employee.self, fileName: fileNameEmployee, type: .yaml, bundle: .module)
         
         XCTAssertTrue(employee.name == "deki")
         XCTAssertTrue(employee.department == "Research - Mobile - iOS")
@@ -56,7 +56,7 @@ class ParserYAMLTests: XCTestCase {
     // MARK: - File to collection object -- Array content
     
     func testYAMLWithArrayContent() throws {
-        let yaml = try DekiHelper.Parser.collectionObject(fileName: fileNameDevelopers, type: .yaml, bundle: .module)
+        let yaml = try DekiParser.collectionObject(fileName: fileNameDevelopers, type: .yaml, bundle: .module)
         
         guard case _ as [Any] = yaml else {
             XCTFail("Expecting array content")
@@ -68,7 +68,7 @@ class ParserYAMLTests: XCTestCase {
     // MARK: - File to collection object -- Dictionary content
 
     func testYAMLToObjectWithDictionaryContent() throws {
-        let yamlObject = try DekiHelper.Parser.collectionObject(fileName: fileNameEmployee, type: .yaml, bundle: .module)
+        let yamlObject = try DekiParser.collectionObject(fileName: fileNameEmployee, type: .yaml, bundle: .module)
         
         guard case let yamlObject as [String: String] = yamlObject else {
             XCTFail("Expecting a dictionary")
@@ -84,14 +84,14 @@ class ParserYAMLTests: XCTestCase {
     
     func testStringToModelWithArrayContent() throws {
         
-        let developers = try DekiHelper.Parser.setupModel([Developer].self, collection: yamlStringWithArrayContent)
+        let developers = try DekiParser.setupModel([Developer].self, collection: yamlStringWithArrayContent)
         
         XCTAssertTrue(developers[0].name == "deki")
         XCTAssertTrue(developers[0].department == "research")
         XCTAssertTrue(developers[1].name == "omen")
         XCTAssertTrue(developers[1].department == "research")
         
-        let developers2 = try DekiHelper.Parser.setupModel([Developer].self, collection: yamlStringWithArrayContent2)
+        let developers2 = try DekiParser.setupModel([Developer].self, collection: yamlStringWithArrayContent2)
         
         XCTAssertTrue(developers2[0].name == "deki")
         XCTAssertTrue(developers2[0].department == "research")
@@ -104,12 +104,12 @@ class ParserYAMLTests: XCTestCase {
     
     func testStringToModelWithDictionaryContent() throws {
         
-        let employee = try DekiHelper.Parser.setupModel(Employee.self, collection: yamlStringWithDictionaryContent)
+        let employee = try DekiParser.setupModel(Employee.self, collection: yamlStringWithDictionaryContent)
         
         XCTAssertTrue(employee.name == "deki")
         XCTAssertTrue(employee.department == "Research - Mobile - iOS")
         
-        let employee2 = try DekiHelper.Parser.setupModel(Employee.self, collection: yamlStringWithDictionaryContent2)
+        let employee2 = try DekiParser.setupModel(Employee.self, collection: yamlStringWithDictionaryContent2)
         
         XCTAssertTrue(employee2.name == "deki")
         XCTAssertTrue(employee2.department == "Research - Mobile - iOS")
@@ -120,7 +120,7 @@ class ParserYAMLTests: XCTestCase {
     
     func testStringToObjectWithArrayContent() throws {
         
-        let yamlObject = try DekiHelper.Parser.collectionObject(string: yamlStringWithArrayContent)
+        let yamlObject = try DekiParser.collectionObject(string: yamlStringWithArrayContent)
         
         guard case let yamlObject as [[String: String]] = yamlObject else {
             XCTFail("Expecting an array")
@@ -132,7 +132,7 @@ class ParserYAMLTests: XCTestCase {
         XCTAssertTrue(yamlObject[1]["name"] == "omen")
         XCTAssertTrue(yamlObject[1]["department"] == "research")
         
-        let yamlObject2 = try DekiHelper.Parser.collectionObject(string: yamlStringWithArrayContent2)
+        let yamlObject2 = try DekiParser.collectionObject(string: yamlStringWithArrayContent2)
         
         guard case let yamlObject2 as [[String: String]] = yamlObject2 else {
             XCTFail("Expecting an array")
@@ -151,7 +151,7 @@ class ParserYAMLTests: XCTestCase {
 
     func testStringToObjectWithDictionaryContent() throws {
         
-        let yamlObject = try DekiHelper.Parser.collectionObject(string: yamlStringWithDictionaryContent)
+        let yamlObject = try DekiParser.collectionObject(string: yamlStringWithDictionaryContent)
         
         guard case let yamlObject as [String: String] = yamlObject else {
             XCTFail("Expecting a dictionary")
@@ -161,7 +161,7 @@ class ParserYAMLTests: XCTestCase {
         XCTAssertTrue(yamlObject["name"] == "deki")
         XCTAssertTrue(yamlObject["department"] == "Research - Mobile - iOS")
         
-        let yamlObject2 = try DekiHelper.Parser.collectionObject(string: yamlStringWithDictionaryContent2)
+        let yamlObject2 = try DekiParser.collectionObject(string: yamlStringWithDictionaryContent2)
         
         guard case let yamlObject2 as [String: String] = yamlObject2 else {
             XCTFail("Expecting a dictionary")
