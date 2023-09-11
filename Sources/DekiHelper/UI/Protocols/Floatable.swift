@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Floatable.swift
 //  
 //
 //  Created by Dexter Ramos on 9/11/23.
@@ -8,19 +8,19 @@
 import Foundation
 import UIKit
 
-protocol Animatable: UIView {
+public protocol Animatable: UIView {
     var animator: UIDynamicAnimator { get set }
 }
 
-protocol Snappable: UIView {
+public protocol Snappable: UIView {
     var snapBehavior: UISnapBehavior! { get set }
 }
 
-protocol Floatable: Animatable, Snappable  {
+public protocol Floatable: Animatable, Snappable  {
     func handleFloat(_ sender: UIPanGestureRecognizer)
 }
 
-extension Floatable {
+public extension Floatable {
     func handleFloat(_ sender: UIPanGestureRecognizer) {
         guard let referenceView = animator.referenceView else {
             return
