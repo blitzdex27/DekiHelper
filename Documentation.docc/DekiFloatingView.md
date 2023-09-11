@@ -2,6 +2,8 @@
 
 A view that float and snaps.
 
+![dekifloatingview](./Documentation.docc/Resources/dekifloatingview-p.gif)
+
 ## Overview
 
 Create a floating view using DekiFloatingView class or subclass it. Treat it as a normal view, with floating bonus!
