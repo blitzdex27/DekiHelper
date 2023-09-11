@@ -1,6 +1,6 @@
 # DekiHelper
 
-- Parsing - `DekiHelper.Parser.<methods>`
+- [Parsing](./Documentation.docc/Parsing.md) - `DekiParser.`
 - Floating view - `DekiFloatingView`
 
 ## Samples
