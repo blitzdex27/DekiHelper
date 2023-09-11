@@ -21,7 +21,7 @@ public extension DekiHelper.Parser {
     }
     
     /// Parse json or yaml file into model
-    static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType, bundle: Bundle = Bundle.main) throws -> T where T: Decodable {
+    static func setupModel<T>(_ model: T.Type, fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> T where T: Decodable {
         
         let data: Data
         
@@ -76,7 +76,7 @@ public extension DekiHelper.Parser {
     }
     
     /// Parse json or yaml file into object (array or dictionary)
-    static func collectionObject(fileName: String, type: FileType, bundle: Bundle = Bundle.main) throws -> Any {
+    static func collectionObject(fileName: String, type: FileType = .json, bundle: Bundle = Bundle.main) throws -> Any {
         
         switch type {
         case .json:
