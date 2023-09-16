@@ -150,7 +150,7 @@ final class EmailValidationTests: XCTestCase {
         }
     }
 
-    /// - local part of the email address should be interpreted and treated as case-sensitive by the receiving email server (RFC 5321)
+    /// Local part of the email address should be interpreted and treated as case-sensitive by the receiving email server (RFC 5321)
     /// - in practice, most email providers and servers, including Google ignore case sensitivity
     func testEmailCaseInsensitivity() {
         let validEmails = [
@@ -192,7 +192,7 @@ final class EmailValidationTests: XCTestCase {
         }
     }
 
-    /// Test with valid top level domains listed by IANA (Internet Assigned Numbers Authority)
+    /// Valid top level domains listed by IANA (Internet Assigned Numbers Authority)
     ///
     /// Reference: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
     func testEmailWithAllTopLevelDomains() {
@@ -272,7 +272,9 @@ final class EmailValidationTests: XCTestCase {
             "user@.example.com",
             "user@..example.com",
             "\"user@exampple.com",
-            "plainaddress", // reference: https://gist.github.com/cjaoude/fd9910626629b53c4d25
+            "plainaddress",
+            
+            // invalid emails retrieved from: https://gist.github.com/cjaoude/fd9910626629b53c4d25
             "#@%^%#$@#$@#.com",
             "@example.com",
             "Joe Smith <email@example.com>",
