@@ -4,7 +4,7 @@
 //
 //  Created by Dexter Ramos on 9/11/23.
 //
-
+#if PLATFORM_IOS
 import Foundation
 import UIKit
 
@@ -61,3 +61,4 @@ public extension Floatable {
         }
     }
 }
+#endif

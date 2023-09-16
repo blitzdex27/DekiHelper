@@ -4,7 +4,7 @@
 //
 //  Created by Dexter Ramos on 9/11/23.
 //
-
+#if PLATFORM_IOS
 import UIKit
 
 open class DekiFloatingView: UIView, Floatable {
@@ -45,3 +45,4 @@ open class DekiFloatingView: UIView, Floatable {
         
     }
 }
+#endif
