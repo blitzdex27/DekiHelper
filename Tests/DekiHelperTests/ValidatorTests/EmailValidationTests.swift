@@ -19,7 +19,7 @@ final class EmailValidationTests: XCTestCase {
     }()
 
     func testEmailSimple() {
-        var emails = [
+        let emails = [
             "user27@example.com",
             "john.doe@example.com",
             "jane_doe@example.com",
@@ -36,7 +36,7 @@ final class EmailValidationTests: XCTestCase {
     }
 
     func testEmailWithPlusSign() {
-        var emails = [
+        let emails = [
             "user+support@example.com",
             "jane+123@example.com",
             "info+sales@example.com",
@@ -48,7 +48,7 @@ final class EmailValidationTests: XCTestCase {
     }
 
     func testEmailAlphaOnly() {
-        var emails = [
+        let emails = [
             "a@b.cd",
             "a@b.cde",
             "user@example.com",
@@ -66,7 +66,7 @@ final class EmailValidationTests: XCTestCase {
     }
 
     func testEmailAlphaNumericOnly() {
-        var emails = [
+        let emails = [
             "a1@b.cd",
             "a2@b.cde",
             "us3er@example.com",
@@ -94,7 +94,7 @@ final class EmailValidationTests: XCTestCase {
 
     ///  Local part can contain alphabetic, numeric, and these symbols: !#$%&'*+-/=?^_`{|}~ (RFC 2822, section 3.4.1)
     func testEmailWithAllowedSpecialCharacters() {
-        var emails = [
+        let emails = [
             "!u!!s!er!@example.com",
             "#u##s#er#@example.com",
             "&u&&s&er&@example.com",
@@ -135,7 +135,7 @@ final class EmailValidationTests: XCTestCase {
          "john \"johnny\" doe"@example.com
          "john \"johnny doe"@example.com
          */
-        var emails = [
+        let emails = [
             "\"user\"@example.com",
             "\"john doe\"@example.com",
             "jane_doe@example.com",
@@ -153,7 +153,7 @@ final class EmailValidationTests: XCTestCase {
     /// - local part of the email address should be interpreted and treated as case-sensitive by the receiving email server (RFC 5321)
     /// - in practice, most email providers and servers, including Google ignore case sensitivity
     func testEmailCaseInsensitivity() {
-        var validEmails = [
+        let validEmails = [
             "uSeR@example.com",
             "uSeR.uSEr@example.com",
             "usEr.useR.usEr@example.com",
@@ -168,7 +168,7 @@ final class EmailValidationTests: XCTestCase {
     // MARK: - Email Domain part tests
 
     func testEmailWithSubDomain() {
-        var emails = [
+        let emails = [
             "info@sub.example.com",
             "sales@sub.sub.example.com",
             "contact@sub2.sub1.example.com",
@@ -180,7 +180,7 @@ final class EmailValidationTests: XCTestCase {
     }
 
     func testEmailWithDifferentTopLevelDomains() {
-        var emails = [
+        let emails = [
             "user@example.co.uk",
             "contact@example.org",
             "john.doe@example.net",
@@ -214,7 +214,7 @@ final class EmailValidationTests: XCTestCase {
     // MARK: - Test invalid emails
 
     func testInvalidEmails() {
-        var invalidEmails = [
+        let invalidEmails = [
             "abc_def.example.com",
             "user@example",
             "user@.com",
