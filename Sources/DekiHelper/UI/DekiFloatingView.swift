@@ -7,42 +7,70 @@
 #if PLATFORM_IOS
 import UIKit
 
-open class DekiFloatingView: UIView, Floatable {
+@objcMembers open class DekiFloatingView: UIView, Floatable {
 
-    public var animator: UIDynamicAnimator
+    var animator: UIDynamicAnimator
     
-    public var snapBehavior: UISnapBehavior!
+    var snapBehavior: UISnapBehavior!
     
-    public typealias ShouldFloatClosure = (_ sender: UIPanGestureRecognizer) -> Bool
+    var referenceView: UIView
+    
+    typealias ShouldFloatClosure = (_ sender: UIPanGestureRecognizer) -> Bool
     var shouldFloatClosure: ShouldFloatClosure?
 
-    required public init(referenceView: UIView, frame: CGRect = .zero) {
+    required init(referenceView: UIView, frame: CGRect) {
         self.animator = .init(referenceView: referenceView)
+        self.referenceView = referenceView
+        
         super.init(frame: frame)
-        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:))))
+        setupUI()
+        addGestures()
     }
     
-    public convenience init(referenceView: UIView, shouldFloatClosure: ShouldFloatClosure? = nil, frame: CGRect = .zero) {
+    convenience init(referenceView: UIView, shouldFloatClosure: ShouldFloatClosure? = nil, frame: CGRect = .zero) {
         self.init(referenceView: referenceView, frame: frame)
         self.shouldFloatClosure = shouldFloatClosure
-        setupUI()
+
     }
     
-    required public init?(coder: NSCoder) {
+    private func addGestures() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        addGestureRecognizer(tapGesture)
+
+    }
+    
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
+    private func setupUI() {
+        referenceView.addSubview(self)
         
     }
     
+    @objc func updateReferenceView(_ view: UIView) {
+        self.animator = UIDynamicAnimator(referenceView: view)
+        self.referenceView = view
+        referenceView.addSubview(self)
+    }
+    
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
-        let shouldFloat = shouldFloatClosure?(sender) ?? true
         
-        if shouldFloat {
+        guard let shouldFloatClosure = shouldFloatClosure else {
             handleFloat(sender)
+            return
         }
         
+        if shouldFloatClosure(sender) {
+            handleFloat(sender)
+        }
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        // override
     }
 }
 #endif

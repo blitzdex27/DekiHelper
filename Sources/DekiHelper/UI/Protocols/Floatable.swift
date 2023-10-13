@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 public protocol Animatable: UIView {
+    var referenceView: UIView
     var animator: UIDynamicAnimator { get set }
 }
 
