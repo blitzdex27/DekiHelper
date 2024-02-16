@@ -5,6 +5,13 @@
 //  Created by Dexter Ramos on 8/31/23.
 //
 
-public struct DekiHelper {
+import DekiGetters
+
+public enum DekiHelper {
+    
+    public enum Getters {
+        
+        public enum UI: DekiGettersUI { }
+    }
     
 }

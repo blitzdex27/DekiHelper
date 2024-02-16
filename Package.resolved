@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "DekiGetters",
+        "repositoryURL": "https://github.com/blitzdex27/DekiGetters.git",
+        "state": {
+          "branch": "main",
+          "revision": "1f5efd1abc2187f0715adec378bf22aba4bc7586",
+          "version": null
+        }
+      },
+      {
         "package": "Yams",
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
