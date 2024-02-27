@@ -8,6 +8,8 @@
 import Foundation
 import Yams
 
+// TODO: Separate package
+
 public class DekiParser {
     
     public enum ParseError: Error {

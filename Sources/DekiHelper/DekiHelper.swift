@@ -7,6 +7,4 @@
 
 import DekiGetters
 
-public struct DekiHelper {
-    
-}
+public enum DekiHelper { }
