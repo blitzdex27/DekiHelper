@@ -6,12 +6,6 @@
 //
 
 import DekiGetters
-
-public enum DekiHelper {
-    
-    public enum Getters {
-        
-        public enum UI: DekiGettersUI { }
-    }
-    
-}
+import DekiPersistable
+import DekiParser
+import DekiValidator

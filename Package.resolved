@@ -11,12 +11,39 @@
         }
       },
       {
+        "package": "DekiParser",
+        "repositoryURL": "https://github.com/blitzdex27/DekiParser.git",
+        "state": {
+          "branch": null,
+          "revision": "f9f2f5387fdc8a71eeaa5118fa98b4e1c65a7b82",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "DekiPersistable",
+        "repositoryURL": "https://github.com/blitzdex27/DekiPersistable.git",
+        "state": {
+          "branch": null,
+          "revision": "bd1366e179dfb4b1451f462e287d7bc6a5c62894",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "DekiValidator",
+        "repositoryURL": "https://github.com/blitzdex27/DekiValidator.git",
+        "state": {
+          "branch": null,
+          "revision": "54553021c1a98957c0df25f9abed6ea9a5194b9b",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "Yams",
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "0d9ee7ea8c4ebd4a489ad7a73d5c6cad55d6fed3",
-          "version": "5.0.6"
+          "revision": "3036ba9d69cf1fd04d433527bc339dc0dc75433d",
+          "version": "5.1.3"
         }
       }
     ]

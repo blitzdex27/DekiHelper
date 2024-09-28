@@ -18,18 +18,21 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
          .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.6"),
-         .package(url: "https://github.com/blitzdex27/DekiGetters.git", branch: "main")
+         .package(url: "https://github.com/blitzdex27/DekiGetters.git", branch: "main"),
+         .package(url: "https://github.com/blitzdex27/DekiPersistable.git", "1.0.2"..<"2.0.0"),
+         .package(url: "https://github.com/blitzdex27/DekiParser.git", "1.0.0"..<"2.0.0"),
+         .package(url: "https://github.com/blitzdex27/DekiValidator.git", "1.0.0"..<"2.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "DekiHelper",
-            dependencies: ["Yams", "DekiGetters"]
+            dependencies: ["Yams", "DekiGetters", "DekiPersistable", "DekiParser", "DekiValidator"]
         ),
         .testTarget(
             name: "DekiHelperTests",
-            dependencies: ["DekiHelper"],
+            dependencies: ["DekiHelper", "DekiParser"],
             resources: [.process("Resources")]),
     ]
 )

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "55B14A3A-D44C-49FD-AB42-0622B18B5873",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DekiHelperTests",
+        "name" : "DekiHelperTests"
+      }
+    }
+  ],
+  "version" : 1
+}
