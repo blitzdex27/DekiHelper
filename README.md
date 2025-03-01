@@ -2,6 +2,8 @@
 
 A collection of daily helpers for iOS development.
 
+You can selectively add a specific helper into your project or add all the helpers by adding `DekiHelper` swift package.
+
 - [`DekiParser`](https://github.com/blitzdex27/DekiParser) - Parse dictionary/array from string or files in json or yaml format.
 - [`DekiFloatingView`](./Documentation.docc/DekiFloatingView.md) - A view that float and snaps.
 - [`DekiValidator`](https://github.com/blitzdex27/DekiValidator) - Validates values (e.g. email)
